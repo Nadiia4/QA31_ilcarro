@@ -1,25 +1,23 @@
 package tests;
 
 import manager.ApplicationManager;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 
-public class TestBase {
-    //protected - eto vidimost
+public class TestsBase {
     protected static ApplicationManager app = new ApplicationManager();
 
 
-    @BeforeMethod
+    @BeforeSuite
     public void setUp() {
         app.init();
 
     }
 
-    @AfterMethod
+    @AfterSuite
     public void tearDown() {
-        app.stop();
-
+        //app.stop();
     }
+
 
 
 }
