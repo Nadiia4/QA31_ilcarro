@@ -100,5 +100,6 @@ public class CarHelper extends HelperBase{
     public void buttonSearch() {
 
         wd.findElement(By.cssSelector(".navigation-link")).click();
+        // wd.findElement(By.cssSelector(".header a[href='/']")).click();
     }
 }

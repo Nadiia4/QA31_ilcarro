@@ -19,7 +19,7 @@ public class LoginTests extends TestsBase {
 
     @Test
     public void loginSuccess() {
-
+logger.info("The test start with email : [lenastep@gmail.com] & password : [12345nnnN]");
         app.getUserHelper().openLoginForm();
         app.getUserHelper().fillLoginForm("lenastep@gmail.com", "12345nnnN");
         app.getUserHelper().submitForm();
@@ -32,7 +32,7 @@ public class LoginTests extends TestsBase {
     public void loginSuccessModel() {
 
         User user = new User().withEmail("lenastep@gmail.com").withPassword("12345nnnN");
-
+logger.info("The test start with data: " + user.toString());
         app.getUserHelper().openLoginForm();
         app.getUserHelper().fillLoginForm(user);
         app.getUserHelper().submitForm();

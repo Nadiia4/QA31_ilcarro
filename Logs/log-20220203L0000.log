@@ -1,0 +1,4 @@
+00:00:08  INFO  manager.ApplicationManager - All tests strts in 'Chrome' browser
+00:00:10  INFO  tests.TestsBase - Name of test ----->searchPeriodAnyDataInPast
+00:00:56  INFO  manager.ApplicationManager - All tests strts in 'Chrome' browser
+00:00:58  INFO  tests.TestsBase - Name of test ----->searchPeriodAnyDataInPast

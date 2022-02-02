@@ -14,7 +14,9 @@ public class AddNewCarTests extends TestsBase{
         // if !logged ---> login()
 
         if(!app.getUserHelper().isLogOutPresent()){
-            app.getUserHelper().login(new User().withEmail("noa@gmail.com").withPassword("Nnoa12345$"));
+            User user = new User().withEmail("noa@gmail.com").withPassword("Nnoa12345$");
+            app.getUserHelper().login(user);
+        logger.info("Car was added for user " + user.toString());
         }
     }
 
@@ -43,6 +45,8 @@ public class AddNewCarTests extends TestsBase{
                 .features("type of")
                 .about("Very good car")
                 .build();
+
+logger.info("Car was added " + car.toString());
 
         app.getCarHelper().openCarForm();
         app.getCarHelper().fillCarForm(car);
@@ -76,6 +80,8 @@ public class AddNewCarTests extends TestsBase{
                 .features("type of")
                 .about("Very good car")
                 .build();
+
+        logger.info("Car was added " + car.toString());
 
         app.getCarHelper().openCarForm();
         app.getCarHelper().fillCarForm(car);

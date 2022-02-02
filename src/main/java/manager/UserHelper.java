@@ -32,6 +32,7 @@ public class UserHelper extends HelperBase {
     public void submitForm() {
 
         click(By.cssSelector("[type='submit']"));
+
     }
 
     public void openRegistrationForm() {
