@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     implementation 'org.testng:testng:7.4.0'
-    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'// 4.1.1
     implementation 'io.github.bonigarcia:webdrivermanager:5.0.3'
 
     compileOnly 'org.projectlombok:lombok:1.18.22'
@@ -25,4 +25,33 @@ dependencies {
 
 test {
     useTestNG()
+}
+
+task reg(type: Test){
+
+    useTestNG{
+
+        def groups = System.getProperty('groups')
+
+        if(groups!= null){
+            includeGroups groups
+        }
+
+        def suite = System.getProperty('suite', '')
+
+        if (suite.equals('quick')) {
+            suites 'src/test/resources/quick.xml'
+        } else if (suite.equals('smoke')) {
+            suites 'src/test/resources/smoke.xml'
+        } else {
+            suites 'src/test/resources/testng.xml'
+        }
+
+
+
+    }
+    if(project.hasProperty('browser')){
+        systemProperty 'browser', "${browser}"
+    }
+
 }

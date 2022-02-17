@@ -1,5 +1,0 @@
-20:42:21  INFO  manager.ApplicationManager - All tests strts in 'Chrome' browser
-20:42:26  INFO  tests.TestsBase - Name of test ----->loginSuccess
-20:42:36  INFO  tests.TestsBase - The test start with email : [lenastep@gmail.com] & password : [12345nnnN]
-20:42:42  INFO  tests.TestsBase - Name of test ----->loginSuccessModel
-20:42:42  INFO  tests.TestsBase - The test start with data: User{name='null', lastName='null', email='lenastep@gmail.com', password='12345nnnN'}

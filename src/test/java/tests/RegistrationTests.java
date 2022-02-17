@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class RegistrationTests extends TestsBase {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void preCondition() {
         // if logged [logout present???] ---> logout
 
@@ -16,7 +16,7 @@ public class RegistrationTests extends TestsBase {
             app.getUserHelper().logout();
         }
     }
-    @Test
+    @Test(groups = {"web"})
     public void registrationSuccess() {
 
 
@@ -50,7 +50,7 @@ public class RegistrationTests extends TestsBase {
 
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void postCondition() {
         app.getUserHelper().clickOkButton();
 

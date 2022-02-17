@@ -1,8 +1,10 @@
 package manager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -65,8 +67,10 @@ public class HelperSearch extends HelperBase {
 
     }
 
-    private void typePastData(String datafrom, String dataTo) {//???????????????????????????????????????????????????????/
-typePast(By.id("dates"), datafrom + " - " + dataTo);
+    private void typePastData(String datafrom, String dataTo) {
+
+        typePast(By.id("dates"), datafrom + " - " + dataTo);
+
         //pause(7000);
     }
 
@@ -76,7 +80,21 @@ typePast(By.id("dates"), datafrom + " - " + dataTo);
             //click(locator);
             wd.findElement(locator).clear();
             wd.findElement(locator).sendKeys(text);
+
             // pause(2000);//????
+            click(locator);
+            WebElement label = wd.findElement(locator);
+            Rectangle rect = label.getRect();
+
+
+            int offSetX = rect.getWidth() / 2;
+            int offSetY = rect.getHeight() / 2;
+
+            Actions actions = new Actions(wd);
+            actions.moveToElement(label).release().build().perform();
+
+            System.out.println(offSetX + " " + offSetY);
+            actions.moveByOffset(-offSetX, -offSetY).click().release().build().perform();
         }
     }
 
@@ -120,12 +138,15 @@ typePast(By.id("dates"), datafrom + " - " + dataTo);
 
 
     public boolean isErrorMessageDisplayed() {
+
+
         WebElement until = new WebDriverWait(wd, 15)
-                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='ng-star-inserted']")));
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='ng-star-inserted']")));//??????
         String text = until.getText();
         System.out.println(text);
        // pause(5000);
         return text.equals(" You can't pick date before today ");
+
 
     }
 
@@ -136,5 +157,49 @@ typePast(By.id("dates"), datafrom + " - " + dataTo);
              //return !isElementPresent(By.cssSelector("[type='submit']"));
         }
         return false;
+    }
+
+    public void  fillSearchFromInPast1(String city,String from, String to){
+        fillInputCity(city);
+        typeInPeriodInPast(from, to);
+
+
+    }
+
+    private void typeInPeriodInPast(String from, String to) {
+
+        type(By.id("dates"), from + " - " + to);
+        click(By.cssSelector(".cdk-overlay-container"));
+    }
+
+    public boolean isDataInPast() {
+        WebElement el = wd.findElement(By.cssSelector(".error.ng-star-inserted"));
+        new WebDriverWait(wd, 10)
+                .until(ExpectedConditions.textToBePresentInElement(el, "pick date before today"));
+
+String text = el.getText();
+System.out.println(text);
+        //return text.equals(" You can't pick date before today ");
+        return text.contains("pick date before today");
+
+    }
+
+    public boolean isDataInPast2() {//tot zhe method isDataInPast, ispolnen po drygomy
+        WebElement el = wd.findElement(By.cssSelector(".error.ng-star-inserted"));
+        String text = el.getText();
+
+        new WebDriverWait(wd, 10)
+                .until(ExpectedConditions.textToBePresentInElement(el, text));
+
+        System.out.println(text);
+        //return text.equals(" You can't pick date before today ");
+        return text.contains("pick date before today");
+
+    }
+
+    public boolean isYallaButtonInactive() {
+
+        return !wd.findElement(By.cssSelector("[type='submit']")).isEnabled();
+
     }
 }

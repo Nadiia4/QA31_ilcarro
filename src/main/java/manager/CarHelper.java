@@ -93,6 +93,7 @@ public class CarHelper extends HelperBase{
     }
 
     public void clickSearchButton() {
+        pause(500);
         click(By.xpath("//button[text()='Search cars']"));
 
     }
